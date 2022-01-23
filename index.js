@@ -1,6 +1,6 @@
 const secret = process.env['BOT_CONSUMER_SECRET']; // ADD this only using environment variables
 const key = process.env['BOT_CONSUMER_KEY']; // // ADD this only using environment variables
-const currentURL = "https://twitter-login.therohitdas.repl.co"
+const currentURL = "https://twitter-login.therohitdas.repl.co" // Example - https://twitter-login.therohitdas.repl.co
 
 
 const express = require('express');
@@ -20,16 +20,7 @@ app.use(session({
 
 app.get('/', (req, res) => {
   if (req.session.user) res.send(req.session.user);
-  else res.send(
-	  `1. Add the current browser URL to Twitter allowed host inside app settings. </br>
-  	   2. Add it to the local variable <code>currentURL</code>
-	   <br>
-	   After doing all this, restart Repl.it and go to - <a href="/twitter/callback">Twitter Redirect </a>
-	<br>
-	<p style="margin-top=50px;">Made with Procrastination by <a href="https://therohitdas.com/">Rohit Das</a>
-	</p>
-	`
-  );
+  else res.sendFile("index.html", {root: __dirname });
 })
 
 const tw = new LoginWithTwitter({
@@ -72,6 +63,10 @@ app.get('/twitter/callback', (req, res) => {
     // Redirect to whatever route that can handle your new Twitter login user details!
     res.redirect('/')
   });
+});
+
+app.get('/twitter-url-settings.png', (req, res) => {
+	res.sendFile("twitter-url-settings.png", {root: __dirname })
 });
 
 app.listen(port, () => {

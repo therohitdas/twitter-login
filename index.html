@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Twitter Login</title>
+
+	<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css"
+		integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+</head>
+
+<body>
+	<div style="display: block; width:100%; max-width: 500px; margin: auto; margin-top: 5vh">
+	<ol>
+		<li>Login to the twitter developer portal.</li>
+		<li>Add these two urls in the Authentication settings of your twitter app-
+			<pre id="redirect"></pre> and
+			<pre id="callback"></pre>
+			<img src="/twitter-url-settings.png" style="width: 100%; max-width: fit-content; height: auto;" alt="">
+			<br>
+		</li>
+		<li style="margin-top: 30px!important;">Add this url to your repl's line 3, as a value of
+			<strong>currentURL</strong>
+			<pre id="host"></pre>
+		</li>
+	</ol>
+	After you complete all the three steps click -
+	<a href="/twitter" style="margin-top: 30px; display:block;">
+		<button style="padding: 10px 20px;">
+			Generate Access Token and Secret
+		</button></a>
+	</div>
+
+	<p style="margin-top:50px; text-align: center;">Made with Procrastination by <a
+			href="https://therohitdas.com/">Rohit Das</a>
+	</p>
+	<script>
+		var host = window.location.origin;
+		var callback = host + "/twitter/callback";
+		var redirect = host + "/twitter";
+
+		document.getElementById("redirect").innerHTML = redirect;
+		document.getElementById("callback").innerHTML = callback;
+		document.getElementById("host").innerHTML = host;
+	</script>
+</body>
+
+</html>
